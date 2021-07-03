@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SavePacientesRequest;
+use App\Http\Requests\UpdatePacientesRequest;
 use App\Models\Pacientes;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class PacienteController extends Controller
         return response()->json([
             'res' => true,
             'msg' => 'Paciente guardado con exito'
-        ]);
+        ],200);
     }
 
     /**
@@ -45,7 +46,7 @@ class PacienteController extends Controller
         return response()->json([
             'res' => true,
             'paciente' => $paciente
-        ]);
+        ],200);
     }
 
     /**
@@ -55,9 +56,13 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pacientes $paciente)
+    public function update(UpdatePacientesRequest $request, Pacientes $paciente)
     {
-        //
+        $paciente->update($request->all());
+        return response()->json([
+            'res' => true,
+            'msg' => 'Paciente actualizado con exito'
+        ],200);
     }
 
     /**
@@ -68,6 +73,10 @@ class PacienteController extends Controller
      */
     public function destroy(Pacientes $paciente)
     {
-        //
+        $paciente->delete();
+        return response()->json([
+            'res' => true,
+            'msg' => 'Paciente eliminado'
+        ],200);
     }
 }
