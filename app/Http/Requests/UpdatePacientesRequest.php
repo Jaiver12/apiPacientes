@@ -28,7 +28,7 @@ class UpdatePacientesRequest extends FormRequest
             "apellidos" => "required",
             "edad" => "required",
             "sexo" => "required",
-            "dni" => "required|unique:pacientes,dni,".$this->route('pacientes')->id,
+            "dni" => "required|unique:pacientes,dni,".$this->route('paciente')->id,
             "tipo_sangre" => "required",
             "telefono" => "required",
             "correo" => "required",
